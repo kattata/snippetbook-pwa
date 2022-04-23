@@ -30,7 +30,7 @@ const SnippetList = ({ data }) => {
 
   useEffect(() => {
     displaySnippetsByFolder();
-  }, [params.folderId]);
+  }, [params.folderId, data]);
 
   const handleSearch = (e) => {
     let input = e.target.value.toLowerCase();

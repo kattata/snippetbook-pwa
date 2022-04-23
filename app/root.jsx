@@ -48,9 +48,14 @@ export async function loader() {
 
 export async function action({ request }) {
   const form = await request.formData();
-  const id = form.get("_id");
-  if (toggleFavorite(form, id)) {
-    return redirect(`/snippets/${id}`);
+  const snippetId = form.get("_id");
+  const folderId = form.get("folderId");
+  if (toggleFavorite(form, snippetId)) {
+    return redirect(`/folders/${folderId}/snippets/${snippetId}`);
+  } else {
+    throw new Response("Not Found", {
+      status: 404,
+    });
   }
 }
 
