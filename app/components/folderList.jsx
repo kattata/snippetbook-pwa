@@ -14,11 +14,20 @@ const FolderList = ({ data }) => {
         </Link>
       </div>
       <div className="h-[97%] overflow-y-scroll pb-5">
+        <div className="relative">
+          <Link to={`/folders/all/snippets`}>
+            <div className="grey-border p-3 mt-2 w-full">
+              <div className="flex justify-between">
+                <h3 className="font-bold mb-4">All</h3>
+              </div>
+            </div>
+          </Link>
+        </div>
         {data.map((folder) => {
           return (
             <div key={folder?._id} className="relative">
               <Link to={`/folders/${folder?._id}/snippets`}>
-                <div className="grey-border p-3 mt-2 w-full" key={folder._id}>
+                <div className="grey-border p-3 mt-2 w-full">
                   <div className="flex justify-between">
                     <h3 className="font-bold mb-4">{folder?.name}</h3>
                   </div>

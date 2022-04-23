@@ -9,12 +9,28 @@ import Favorite from "./favorite";
 const SnippetList = ({ data }) => {
   const [selectedSort, setSelectedSort] = useState("sortBy");
   const [selectedFilter, setSelectedFilter] = useState("all");
-  const [snippets, setSnippets] = useState(data);
+  const [snippets, setSnippets] = useState([]);
   const params = useParams();
 
+  const displaySnippetsByFolder = () => {
+    let updatedData;
+    const copiedData = [...data];
+
+    if (params.folderId === "all") {
+      updatedData = copiedData;
+    } else if (params.folderId === undefined) {
+      updatedData = [];
+    } else {
+      updatedData = copiedData.filter(
+        (snippet) => snippet.folder_id === params.folderId
+      );
+    }
+    setSnippets(updatedData);
+  };
+
   useEffect(() => {
-    setSnippets(data);
-  }, [data]);
+    displaySnippetsByFolder();
+  }, [params.folderId]);
 
   const handleSearch = (e) => {
     let input = e.target.value.toLowerCase();
