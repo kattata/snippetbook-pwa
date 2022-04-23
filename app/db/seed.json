@@ -1,0 +1,27 @@
+[
+  {
+    "_id": "623f4b958a1d78706c0b1372",
+    "title": "Model in MongoDB",
+    "description": "This is how you declare a model in MongoDB",
+    "language": "javaScript",
+    "favorite": "false",
+    "snippet": "const snippetSchema = new Schema({\n  title: String,\n  description: String,\n  language: String,\n  date_added: Date,\n  date_updated: Date,\n  favorite: Boolean,\n  snippet: String,\n});",
+    "date_updated": "2022-03-30T13:18:21.605Z"
+  },
+  {
+    "_id": "62434562a0a18c9d4a129500",
+    "title": "Layer and Apply",
+    "description": "Creating custom classes in Tailwind",
+    "language": "TailwindCSS",
+    "snippet": "@tailwind base;\n@tailwind components;\n@tailwind utilities;\n\n@layer components {\n  .h1 {\n    @apply font-bold text-2xl mb-4;\n  }\n\n  .wrapper {\n    @apply absolute left-80 top-0 w-[calc(100%-320px)] h-full;\n  }\n\n  .wrapper-inner {\n    @apply absolute h-full w-[970px] bg-white top-5 left-1/2 -translate-x-1/2 p-10 shadow-md;\n  }\n\n  .grey-border {\n    @apply border-solid border-slate-300 border rounded-sm;\n  }\n}",
+    "date_updated": "2022-03-30T08:49:56.583Z"
+  },
+  {
+    "_id": "624407404abd6af499c0f826",
+    "title": "Hello World",
+    "description": "I'm a programmer now",
+    "language": "Javascript",
+    "snippet": "console.log(\"Hello World\");",
+    "date_updated": "2022-03-30T08:49:01.955Z"
+  }
+]

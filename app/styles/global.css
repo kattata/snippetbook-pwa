@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .h1 {
+    @apply font-bold text-2xl mb-4;
+  }
+
+  .wrapper {
+    @apply h-auto my-5 ml-[360px] mr-5 w-full;
+  }
+
+  .wrapper-inner {
+    @apply relative max-w-[1000px] bg-white p-10 shadow-md;
+  }
+
+  .grey-border {
+    @apply border-solid border-slate-300 border rounded-sm;
+  }
+}
