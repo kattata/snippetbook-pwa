@@ -39,11 +39,9 @@ export async function loader({ params }) {
 export default function EditSnippet() {
   const snippet = useLoaderData();
   return (
-    <div className="wrapper">
-      <div className="wrapper-inner">
-        <h1 className="h1">Edit a code snippet</h1>
-        <SnippetForm snippet={snippet} />
-      </div>
-    </div>
+    <>
+      <h1 className="h1">Edit a code snippet</h1>
+      <SnippetForm snippet={snippet} />
+    </>
   );
 }

@@ -7,12 +7,15 @@ import {
   ScrollRestoration,
   useLoaderData,
   redirect,
+  json,
 } from "remix";
 import styles from "~/tailwind.css";
 import favicon from "~/assets/bi_code-slash.svg";
 import { toggleFavorite } from "./components/favorite";
-import SideBar from "./components/sidebar";
 import connectDb from "./db/connectDb.server";
+import SnippetList from "./components/snippetList";
+import FolderList from "./components/folderList";
+import SideBar from "./components/sidebar";
 
 export const links = () => [
   {
@@ -36,7 +39,11 @@ export function meta() {
 
 export async function loader() {
   const db = await connectDb();
-  return db.models.Snippet.find();
+  const data = {
+    snippets: await db.models.Snippet.find(),
+    folders: await db.models.Folder.find(),
+  };
+  return data;
 }
 
 export async function action({ request }) {
@@ -48,7 +55,7 @@ export async function action({ request }) {
 }
 
 export default function App() {
-  const snippets = useLoaderData();
+  const data = useLoaderData();
   return (
     <html lang="en">
       <head>
@@ -56,7 +63,7 @@ export default function App() {
         <Links />
       </head>
       <body className="font-lato bg-slate-100 flex justify-between">
-        <SideBar data={snippets} />
+        <SideBar data={data} />
         <Outlet />
         <ScrollRestoration />
         <Scripts />

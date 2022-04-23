@@ -11,10 +11,19 @@ const snippetSchema = new Schema({
   snippet: String,
 });
 
+const folderSchema = new Schema({
+  name: String,
+});
+
 export const models = [
   {
     name: "Snippet",
     schema: snippetSchema,
     collection: "snippets",
+  },
+  {
+    name: "Folder",
+    schema: folderSchema,
+    collection: "folders",
   },
 ];

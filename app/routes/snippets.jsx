@@ -1,8 +1,10 @@
-export default function Index() {
+import { Outlet } from "@remix-run/react";
+
+export default function Snippets() {
   return (
     <div className="wrapper">
       <div className="wrapper-inner">
-        <p className="text-slate-400 text-xs">No folder selected.</p>
+        <Outlet />
       </div>
     </div>
   );

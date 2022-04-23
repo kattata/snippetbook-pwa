@@ -8,11 +8,11 @@
   }
 
   .wrapper {
-    @apply h-auto my-5 ml-[360px] mr-5 w-full;
+    @apply h-auto my-5 ml-[596px] mr-5 w-full;
   }
 
   .wrapper-inner {
-    @apply relative max-w-[1000px] bg-white p-10 shadow-md;
+    @apply relative max-w-full bg-white p-10 shadow-md;
   }
 
   .grey-border {
