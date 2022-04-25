@@ -8,11 +8,13 @@ const snippetSchema = new Schema({
   language: String,
   date_updated: Date,
   favorite: Boolean,
+  folder_id: String,
   snippet: String,
 });
 
 const folderSchema = new Schema({
   name: String,
+  date_created: Date,
 });
 
 export const models = [

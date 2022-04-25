@@ -1,7 +1,9 @@
 import { Form } from "remix";
 import Input from "~/components/input";
+import Select from "~/components/select";
+import Button from "~/components/button";
 
-export default function SnippetForm({ snippet }) {
+export default function SnippetForm({ snippet, folders }) {
   return (
     <Form method="post">
       <div className="flex justify-between gap-5">
@@ -15,6 +17,7 @@ export default function SnippetForm({ snippet }) {
             value={snippet?.description}
           />
           <Input label="Language" name="language" value={snippet?.language} />
+          <Select label="Folder" name="folder" values={folders} />
         </div>
         <div className="w-full">
           <Input
@@ -26,12 +29,7 @@ export default function SnippetForm({ snippet }) {
           />
         </div>
       </div>
-      <button
-        type="submit"
-        className="bg-slate-800 text-white uppercase py-2 px-7 rounded text-sm font-bold ml-auto mr-0 mt-4 block"
-      >
-        Submit
-      </button>
+      <Button text="Submit" />
     </Form>
   );
 }

@@ -50,6 +50,24 @@ export async function action({ request }) {
   const form = await request.formData();
   const snippetId = form.get("_id");
   const folderId = form.get("folderId");
+  const id = form.get("folder");
+  const db = await connectDb();
+
+  if (form.get("_method") === "delete") {
+    console.log(id);
+    try {
+      await db.models.Folder.findByIdAndDelete({
+        _id: id,
+      });
+      return redirect(`/`);
+    } catch (error) {
+      return json(
+        { errors: error.errors, values: Object.fromEntries(form) },
+        { status: 400 }
+      );
+    }
+  }
+
   if (toggleFavorite(form, snippetId)) {
     return redirect(`/folders/${folderId}/snippets/${snippetId}`);
   } else {

@@ -20,7 +20,7 @@ export const action = async function ({ request, params }) {
       await db.models.Snippet.findByIdAndDelete({
         _id: id,
       });
-      return redirect(`/`);
+      return redirect(`/folders/${params.folderId}`);
     } catch (error) {
       return json(
         { errors: error.errors, values: Object.fromEntries(form) },

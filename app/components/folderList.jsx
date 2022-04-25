@@ -1,6 +1,7 @@
 import { Link } from "remix";
 import "../styles/global.css";
 import plus from "~/assets/ant-design_plus-outlined.svg";
+import DeleteFolder from "~/components/deleteFolder";
 
 const FolderList = ({ data }) => {
   return (
@@ -26,6 +27,7 @@ const FolderList = ({ data }) => {
         {data.map((folder) => {
           return (
             <div key={folder?._id} className="relative">
+              <DeleteFolder folder={folder} />
               <Link to={`/folders/${folder?._id}/snippets`}>
                 <div className="grey-border p-3 mt-2 w-full">
                   <div className="flex justify-between">

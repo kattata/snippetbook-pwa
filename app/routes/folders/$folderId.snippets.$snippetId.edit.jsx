@@ -10,6 +10,7 @@ export async function action({ request, params }) {
   const description = form.get("description");
   const language = form.get("language");
   const snippet = form.get("snippet");
+  const folderId = form.get("folder");
 
   try {
     await db.models.Snippet.findByIdAndUpdate(
@@ -19,10 +20,11 @@ export async function action({ request, params }) {
         description,
         language,
         snippet,
+        folder_id: folderId,
         date_updated: Date.now(),
       }
     );
-    return redirect(`/snippets/${params.snippetId}`);
+    return redirect(`/folders/${folderId}/snippets/${params.snippetId}`);
   } catch (error) {
     return json(
       { errors: error.errors, values: Object.fromEntries(form) },
@@ -33,15 +35,20 @@ export async function action({ request, params }) {
 
 export async function loader({ params }) {
   const db = await connectDb();
-  return db.models.Snippet.findById(params.snippetId);
+  const data = {
+    snippet: await db.models.Snippet.findById(params.snippetId),
+    folders: await db.models.Folder.find(),
+  };
+  return data;
 }
 
 export default function EditSnippet() {
-  const snippet = useLoaderData();
+  const data = useLoaderData();
+  console.log(data);
   return (
     <>
       <h1 className="h1">Edit a code snippet</h1>
-      <SnippetForm snippet={snippet} />
+      <SnippetForm snippet={data.snippet} folders={data.folders} />
     </>
   );
 }
