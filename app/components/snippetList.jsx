@@ -127,30 +127,38 @@ const SnippetList = ({ data }) => {
           </div>
         </Link>
       </div>
-      <div className="h-[70%] overflow-y-scroll pb-5">
-        {snippets.map((snippet) => {
-          return (
-            <div key={snippet?._id} className="relative">
-              <Favorite snippet={snippet} inSidebar={true} />
-              <Link to={`/folders/${params.folderId}/snippets/${snippet?._id}`}>
-                <div className="grey-border p-3 mt-2 w-full">
-                  <div className="flex justify-between">
-                    <h3 className="font-bold mb-4">{snippet?.title}</h3>
+      {!params.folderId ? (
+        <p className="text-slate-400 text-xs text-center mt-8">
+          Select a folder.
+        </p>
+      ) : (
+        <div className="h-[70%] overflow-y-scroll pb-5">
+          {snippets.map((snippet) => {
+            return (
+              <div key={snippet?._id} className="relative">
+                <Favorite snippet={snippet} inSidebar={true} />
+                <Link
+                  to={`/folders/${params.folderId}/snippets/${snippet?._id}`}
+                >
+                  <div className="grey-border p-3 mt-2 w-full">
+                    <div className="flex justify-between">
+                      <h3 className="font-bold mb-4">{snippet?.title}</h3>
+                    </div>
+                    <div className="flex justify-between">
+                      <p className="text-slate-500 uppercase text-[12px]">
+                        {snippet?.language}
+                      </p>
+                      <p className="text-slate-500 text-[12px]">
+                        {formatDate(snippet?.date_updated)}
+                      </p>
+                    </div>
                   </div>
-                  <div className="flex justify-between">
-                    <p className="text-slate-500 uppercase text-[12px]">
-                      {snippet?.language}
-                    </p>
-                    <p className="text-slate-500 text-[12px]">
-                      {formatDate(snippet?.date_updated)}
-                    </p>
-                  </div>
-                </div>
-              </Link>
-            </div>
-          );
-        })}
-      </div>
+                </Link>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };
