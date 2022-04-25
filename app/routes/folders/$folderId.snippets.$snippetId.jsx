@@ -2,8 +2,10 @@ import { Form, json, Link, redirect, useLoaderData, useParams } from "remix";
 import connectDb from "~/db/connectDb.server";
 import trash from "~/assets/ant-design_delete-outlined.svg";
 import edit from "~/assets/ant-design_edit-outlined.svg";
+import copy from "~/assets/ant-design_copy-outlined.svg";
 import { formatDate } from "~/utils/helpers";
 import Favorite, { toggleFavorite } from "~/components/favorite";
+import { useState } from "react";
 
 export async function loader({ params }) {
   const db = await connectDb();
@@ -37,6 +39,11 @@ export const action = async function ({ request, params }) {
 export default function Snippet() {
   const snippet = useLoaderData();
   const params = useParams();
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(snippet.snippet);
+  };
+
   return (
     <>
       <div className="flex justify-between items-center text-slate-400 text-xs">
@@ -64,7 +71,14 @@ export default function Snippet() {
       </p>
       <h1 className="h1">{snippet?.title}</h1>
       <p className="mb-8">{snippet?.description}</p>
-      <div className="grey-border p-6">
+      <div className="grey-border p-6 relative">
+        <button
+          className="absolute right-2 top-2 flex gap-2"
+          onClick={copyToClipboard}
+        >
+          <p className="">Copied!</p>
+          <img src={copy} alt="Copy to Clipboard" className="h-5" />
+        </button>
         <pre className="overflow-x-auto whitespace-pre-wrap">
           <code>{snippet?.snippet}</code>
         </pre>
