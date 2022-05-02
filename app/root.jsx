@@ -23,19 +23,48 @@ export const links = () => [
     href: styles,
   },
   {
+    rel: "apple-touch-icon",
+    sizes: "180x180",
+    href: "/manifest/apple-touch-icon.png",
+  },
+  {
     rel: "icon",
-    type: "image/x-icon",
-    href: favicon,
+    type: "image/png",
+    sizes: "32x32",
+    href: "/manifest/favicon-32x32.png",
+  },
+  {
+    rel: "icon",
+    type: "image/png",
+    sizes: "16x16",
+    href: "/manifest/favicon-16x16.png",
+  },
+  {
+    rel: "manifest",
+    href: "/manifest/site.webmanifest",
+  },
+  {
+    rel: "mask-icon",
+    href: "/manifest/safari-pinned-tab.svg",
+    color: "#5bbad5",
   },
 ];
 
-export function meta() {
-  return {
+export const meta = () => [
+  {
     charset: "utf-8",
     title: "SnippetBook",
     viewport: "width=device-width,initial-scale=1",
-  };
-}
+  },
+  {
+    name: "msapplication-TileColor",
+    content: "#9f00a7",
+  },
+  {
+    name: "theme-color",
+    content: "#ffffff"
+  },
+];
 
 export async function loader() {
   const db = await connectDb();
