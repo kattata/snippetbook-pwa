@@ -25,46 +25,30 @@ export const links = () => [
   {
     rel: "apple-touch-icon",
     sizes: "180x180",
-    href: "/apple-touch-icon.png",
+    href: "/manifest/apple-touch-icon.png",
   },
   {
     rel: "icon",
     type: "image/png",
     sizes: "32x32",
-    href: "/favicon-32x32.png",
+    href: "/manifest/favicon-32x32.png",
   },
   {
     rel: "icon",
     type: "image/png",
     sizes: "16x16",
-    href: "/favicon-16x16.png",
+    href: "/manifest/favicon-16x16.png",
   },
   {
     rel: "manifest",
-    href: "/site.webmanifest",
+    href: "/manifest/site.webmanifest",
   },
   {
     rel: "mask-icon",
-    href: "/safari-pinned-tab.svg",
+    href: "/manifest/safari-pinned-tab.svg",
     color: "#5bbad5",
   },
 ];
-
-// export function meta() {
-//   return {
-//     charset: "utf-8",
-//     title: "SnippetBook",
-//     viewport: "width=device-width,initial-scale=1",
-//   },
-//   {
-//     name: "msapplication-TileColor",
-//     content: "#9f00a7",
-//   },
-//   {
-//     name: "theme-color",
-//     content: "#ffffff"
-//   },
-// }
 
 export const meta = () => [
   {
