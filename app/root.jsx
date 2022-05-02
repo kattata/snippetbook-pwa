@@ -16,6 +16,7 @@ import connectDb from "./db/connectDb.server";
 import SnippetList from "./components/snippetList";
 import FolderList from "./components/folderList";
 import SideBar from "./components/sidebar";
+import NavBar from "./components/navbar";
 
 export const links = () => [
   {
@@ -86,6 +87,7 @@ export default function App() {
         <Links />
       </head>
       <body className="font-lato bg-slate-100 flex justify-between">
+        <NavBar data={data} />
         <SideBar data={data} />
         <Outlet />
         <ScrollRestoration />

@@ -5,7 +5,8 @@ import DeleteFolder from "~/components/deleteFolder";
 
 const FolderList = ({ data }) => {
   return (
-    <div className="w-52">
+    <div className="lg:w-52 lg:block lg:h-auto lg:p-0 w-full absolute z-20 h-full p-5">
+      {/* <div className="lg:w-52 lg:bg-none lg:block lg:h-auto lg:p-0 bg-white w-full absolute z-20 h-full p-5"> */}
       <div className="flex justify-between items-center mb-3">
         <h3 className="font-bold">Folders</h3>
         <Link to="/folders/new">
