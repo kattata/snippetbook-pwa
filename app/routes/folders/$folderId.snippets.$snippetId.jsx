@@ -6,6 +6,8 @@ import copy from "~/assets/ant-design_copy-outlined.svg";
 import { formatDate } from "~/utils/helpers";
 import Favorite, { toggleFavorite } from "~/components/favorite";
 import { useState } from "react";
+import SyntaxHighlighter from "react-syntax-highlighter/dist/cjs/prism";
+import light from "react-syntax-highlighter/dist/cjs/styles/prism/one-light";
 
 export async function loader({ params }) {
   const db = await connectDb();
@@ -39,10 +41,46 @@ export const action = async function ({ request, params }) {
 export default function Snippet() {
   const snippet = useLoaderData();
   const params = useParams();
+  const [copyTo, setCopyTo] = useState(false);
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(snippet.snippet);
+    setCopyTo(true);
+    setTimeout(() => {
+      setCopyTo(false);
+    }, 1000);
   };
+  function handleThisShit() {
+    switch (snippet?.language.toLowerCase()) {
+      case "javascript":
+        return "javascript";
+      case "react":
+        return "jsx";
+      case "php":
+        return "php";
+      case "mysql":
+        return "sql";
+      case "csharp":
+        return "csharp";
+      case "json":
+        return "json";
+      case "markdown":
+        return "markdown";
+      case "python":
+        return "python";
+      case "scss" || "sass":
+        return "scss";
+      case "typescript" || "sass":
+        return "typescript";
+      case "html":
+        return "html";
+      case "css":
+        return "css";
+      default:
+        return "javascript";
+    }
+  }
+  let snippetLanguage = handleThisShit();
 
   return (
     <>
@@ -76,11 +114,21 @@ export default function Snippet() {
           className="absolute right-2 top-2 flex gap-2"
           onClick={copyToClipboard}
         >
-          <p className="">Copied!</p>
+          <p
+            className={` transition-all duration-300 text-slate-400 ${
+              copyTo ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            Copied!
+          </p>
           <img src={copy} alt="Copy to Clipboard" className="h-5" />
         </button>
         <pre className="overflow-x-auto whitespace-pre-wrap">
-          <code>{snippet?.snippet}</code>
+          <code>
+            <SyntaxHighlighter language={snippetLanguage} style={light}>
+              {snippet?.snippet}
+            </SyntaxHighlighter>
+          </code>
         </pre>
       </div>
     </>
