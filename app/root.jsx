@@ -62,7 +62,7 @@ export const meta = () => [
   },
   {
     name: "theme-color",
-    content: "#ffffff"
+    content: "#ffffff",
   },
 ];
 
@@ -113,6 +113,7 @@ export default function App() {
       <head>
         <Meta />
         <Links />
+        <link rel="manifest" href="site.webmanifest"></link>
       </head>
       <body className="font-lato bg-slate-100 flex justify-between">
         <SideBar data={data} />
