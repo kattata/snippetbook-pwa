@@ -17,7 +17,7 @@ self.addEventListener("fetch", (event) => {
         // and finally if it was not cached or after we sent the response
         let fetchResponse = await fetchResponsePromise;
         // we will update the cache
-        cache.put(event.request, fetchResponse.clone());
+        await cache.put(event.request, fetchResponse.clone());
         // and return the response
         return fetchResponse;
       }

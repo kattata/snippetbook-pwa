@@ -23,6 +23,10 @@ export const links = () => [
     href: styles,
   },
   {
+    rel: "manifest",
+    href: "/site.webmanifest?v=2",
+  },
+  {
     rel: "apple-touch-icon",
     sizes: "180x180",
     href: "/manifest/apple-touch-icon.png",
@@ -113,7 +117,6 @@ export default function App() {
       <head>
         <Meta />
         <Links />
-        <link rel="manifest" href="site.webmanifest"></link>
       </head>
       <body className="font-lato bg-slate-100 flex justify-between">
         <SideBar data={data} />
