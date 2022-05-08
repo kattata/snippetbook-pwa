@@ -8,7 +8,7 @@
   }
 
   .wrapper {
-    @apply lg:h-auto lg:my-5 lg:ml-[596px] mr-5 w-full ml-5 mt-24;
+    @apply lg:h-auto lg:my-5 lg:ml-[596px] w-full mx-0 my-20 lg:mr-5 lg:block absolute lg:static;
   }
 
   .wrapper-inner {
