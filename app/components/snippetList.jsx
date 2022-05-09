@@ -88,16 +88,34 @@ const SnippetList = ({ data }) => {
             : "lg:w-72 w-full mt-16 lg:mt-0"
         }
       >
-        <Link to="/" className="hidden lg:block">
+        {/* <Link to="/" className="hidden lg:block">
           <div className="flex items-center mb-6">
             <img src={logo} alt="SnippetBook Logo" className="h-6" />
             <h2 className="font-bold text-xl ml-3">SnippetBook</h2>
           </div>
-        </Link>
+        </Link> */}
+
+        <div className="flex justify-between items-center mb-3 sm:mt-6 md:mt-0">
+          <h3 className="font-bold text-xl">All snippets</h3>
+          <Link to="/snippets/new">
+            <div className="bg-slate-800 w-5 h-5 rounded-full flex items-center justify-center">
+              <img src={plus} alt="Plus" className="h-3 w-3" />
+            </div>
+          </Link>
+        </div>
 
         <div className="mt-6 mb-6">
+        <div className=" w-full">
+            <label className="text-xs">Search</label>
+            <input
+              type="text"
+              placeholder="Search"
+              className="grey-border px-2 py-1 text-slate-400 w-full"
+              onChange={handleSearch}
+            />
+          </div>
           <div className="flex gap-2">
-            <div>
+            <div className=" w-full">
               <label className="text-xs">Sort by</label>
               <select
                 className="grey-border px-2 py-1 text-slate-400 w-full"
@@ -108,7 +126,7 @@ const SnippetList = ({ data }) => {
                 <option value="title">Title</option>
               </select>
             </div>
-            <div>
+            {/* <div>
               <label className="text-xs">Filter</label>
               <select
                 className="grey-border px-2 py-1 text-slate-400 w-full"
@@ -118,22 +136,8 @@ const SnippetList = ({ data }) => {
                 <option value="all">All</option>
                 <option value="favorites">Favorited</option>
               </select>
-            </div>
+            </div> */}
           </div>
-          <input
-            type="text"
-            placeholder="Search"
-            className="grey-border px-2 py-1 mt-3 text-slate-400 w-full mb-2"
-            onChange={handleSearch}
-          />
-        </div>
-        <div className="flex justify-between items-center mb-3">
-          <h3 className="font-bold">Snippets</h3>
-          <Link to="/snippets/new">
-            <div className="bg-slate-800 w-5 h-5 rounded-full flex items-center justify-center">
-              <img src={plus} alt="Plus" className="h-3 w-3" />
-            </div>
-          </Link>
         </div>
         {!params.folderId ? (
           <p className="text-slate-400 text-xs text-center mt-8">
