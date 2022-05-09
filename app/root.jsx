@@ -16,6 +16,8 @@ import connectDb from "./db/connectDb.server";
 import SnippetList from "./components/snippetList";
 import FolderList from "./components/folderList";
 import SideBar from "./components/sidebar";
+import NavBar from "./components/navbar";
+import { useState } from "react";
 
 export const links = () => [
   {
@@ -108,6 +110,8 @@ export async function action({ request }) {
 
 export default function App() {
   const data = useLoaderData();
+  const [menuOpen, setMenuOpen] = useState();
+
   return (
     <html lang="en">
       <head>
@@ -115,7 +119,8 @@ export default function App() {
         <Links />
       </head>
       <body className="font-lato bg-slate-100 flex justify-between">
-        <SideBar data={data} />
+        <NavBar data={data} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+        <SideBar data={data} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
         <Outlet />
         <ScrollRestoration />
         <Scripts />
