@@ -1,4 +1,12 @@
-import { Form, json, Link, redirect, useLoaderData, useParams } from "remix";
+import {
+  Form,
+  json,
+  Link,
+  redirect,
+  useLoaderData,
+  useParams,
+  useCatch,
+} from "remix";
 import connectDb from "~/db/connectDb.server";
 import trash from "~/assets/ant-design_delete-outlined.svg";
 import edit from "~/assets/ant-design_edit-outlined.svg";
@@ -132,5 +140,25 @@ export default function Snippet() {
         </pre>
       </div>
     </>
+  );
+}
+
+export function CatchBoundary() {
+  const caught = useCatch();
+  return (
+    <div>
+      <h1>
+        {caught.status} {caught.statusText}
+      </h1>
+      <h2>{caught.data}</h2>
+    </div>
+  );
+}
+
+export function ErrorBoundary({ error }) {
+  return (
+    <h1 className="text-red-500 font-bold">
+      {error.name}: {error.message}
+    </h1>
   );
 }

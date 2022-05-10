@@ -96,7 +96,10 @@ export async function action({ request }) {
       });
       return redirect(`/`);
     } catch (error) {
-      return json({ errors: error.errors, values: Object.fromEntries(form) }, { status: 400 });
+      return json(
+        { errors: error.errors, values: Object.fromEntries(form) },
+        { status: 400 }
+      );
     }
   }
 
@@ -128,5 +131,13 @@ export default function App() {
         <LiveReload />
       </body>
     </html>
+  );
+}
+
+export function ErrorBoundary({ error }) {
+  return (
+    <h1 className="text-red-500 font-bold">
+      {error.name}: {error.message}
+    </h1>
   );
 }
