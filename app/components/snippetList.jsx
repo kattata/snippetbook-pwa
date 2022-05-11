@@ -82,6 +82,9 @@ const SnippetList = ({ data, folders }) => {
   };
 
   const getCurrentFolderName = () => {
+    if (!params.folderId) {
+      return "All snippets";
+    }
     if (params.folderId === "all") {
       return "All snippets";
     } else {
