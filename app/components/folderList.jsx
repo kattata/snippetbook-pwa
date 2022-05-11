@@ -20,7 +20,7 @@ const FolderList = ({ data, setMenuOpen, menuOpen }) => {
         className={menuOpen ? "block ml-auto mr-0" : "hidden"}
       />
       <div className="flex justify-between items-center mb-3">
-        <h3 className="font-bold">Foldersss</h3>
+        <h3 className="font-bold">Folders</h3>
         <Link to="/folders/new" onClick={() => setMenuOpen(false)}>
           <div className="bg-slate-800 w-5 h-5 rounded-full flex items-center justify-center">
             <img src={plus} alt="Plus" className="h-3 w-3" />
