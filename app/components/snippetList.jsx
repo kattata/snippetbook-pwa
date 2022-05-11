@@ -1,6 +1,6 @@
 import { Link, useLocation, useParams } from "remix";
 import "../styles/global.css";
-import plus from "~/assets/ant-design_plus-outlined.svg";
+import plus from "~/assets/add-icon.svg";
 import logo from "~/assets/bi_code-slash.svg";
 import { useEffect, useState } from "react";
 import { formatDate } from "~/utils/helpers";
@@ -84,8 +84,8 @@ const SnippetList = ({ data }) => {
       <div
         className={
           params.snippetId || location.pathname == "/folders/new"
-            ? "hidden lg:block lg:w-72 w-full mt-16 lg:mt-0"
-            : "lg:w-72 w-full mt-16 lg:mt-0"
+            ? "hidden lg:block lg:w-72 w-full mt-16 lg:mt-0 p-5"
+            : "lg:w-72 w-full mt-16 lg:mt-0 p-5"
         }
       >
         {/* <Link to="/" className="hidden lg:block">
@@ -95,11 +95,11 @@ const SnippetList = ({ data }) => {
           </div>
         </Link> */}
 
-        <div className="flex justify-between items-center mb-3 sm:mt-6 md:mt-0">
+        <div className="flex justify-between items-center mb-3 sm:mt-6 md:mt-5 lg:mt-0">
           <h3 className="font-bold text-xl">All snippets</h3>
           <Link to="/snippets/new">
-            <div className="bg-slate-800 w-5 h-5 rounded-full flex items-center justify-center">
-              <img src={plus} alt="Plus" className="h-3 w-3" />
+            <div>
+              <img src={plus} alt="Plus" className="h-5 w-5" />
             </div>
           </Link>
         </div>
@@ -152,7 +152,7 @@ const SnippetList = ({ data }) => {
                   <Link
                     to={`/folders/${params.folderId}/snippets/${snippet?._id}`}
                   >
-                    <div className="grey-border p-3 mt-2 w-full">
+                    <div className="grey-border p-3 mb-2 w-full">
                       <div className="flex justify-between">
                         <h3 className="font-bold mb-4">{snippet?.title}</h3>
                       </div>

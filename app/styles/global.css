@@ -18,4 +18,20 @@
   .grey-border {
     @apply border-solid border-slate-300 border rounded-sm;
   }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #647487;
+      border-radius: 25px;
+  
+  }
 }
