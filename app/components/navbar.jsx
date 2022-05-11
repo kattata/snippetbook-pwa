@@ -13,7 +13,7 @@ const NavBar = ({ setMenuOpen }) => {
           onClick={() => setMenuOpen(true)}
         />
         <Link to="/">
-          <div className="flex items-center">
+          <div className="flex items-center visible lg:hidden">
             <img src={logo} alt="SnippetBook Logo" className="h-5" />
             <h2 className="font-bold text-lg ml-3">SnippetBook</h2>
           </div>

@@ -1,6 +1,6 @@
 import { Link, useLocation, useParams } from "remix";
 import "../styles/global.css";
-import plus from "~/assets/ant-design_plus-outlined.svg";
+import plus from "~/assets/add-icon.svg";
 import logo from "~/assets/bi_code-slash.svg";
 import { useEffect, useState } from "react";
 import { formatDate } from "~/utils/helpers";
@@ -84,20 +84,38 @@ const SnippetList = ({ data }) => {
       <div
         className={
           params.snippetId || location.pathname == "/folders/new"
-            ? "hidden lg:block lg:w-72 w-full mt-16 lg:mt-0"
-            : "lg:w-72 w-full mt-16 lg:mt-0"
+            ? "hidden lg:block lg:w-72 w-full mt-16 lg:mt-0 p-5"
+            : "lg:w-72 w-full mt-16 lg:mt-0 p-5"
         }
       >
-        <Link to="/" className="hidden lg:block">
+        {/* <Link to="/" className="hidden lg:block">
           <div className="flex items-center mb-6">
             <img src={logo} alt="SnippetBook Logo" className="h-6" />
             <h2 className="font-bold text-xl ml-3">SnippetBook</h2>
           </div>
-        </Link>
+        </Link> */}
+
+        <div className="flex justify-between items-center mb-3 sm:mt-6 md:mt-5 lg:mt-0">
+          <h3 className="font-bold text-xl">All snippets</h3>
+          <Link to="/snippets/new">
+            <div>
+              <img src={plus} alt="Plus" className="h-5 w-5" />
+            </div>
+          </Link>
+        </div>
 
         <div className="mt-6 mb-6">
+        <div className=" w-full">
+            <label className="text-xs">Search</label>
+            <input
+              type="text"
+              placeholder="Search"
+              className="grey-border px-2 py-1 text-slate-400 w-full"
+              onChange={handleSearch}
+            />
+          </div>
           <div className="flex gap-2">
-            <div>
+            <div className=" w-full">
               <label className="text-xs">Sort by</label>
               <select
                 className="grey-border px-2 py-1 text-slate-400 w-full"
@@ -108,7 +126,7 @@ const SnippetList = ({ data }) => {
                 <option value="title">Title</option>
               </select>
             </div>
-            <div>
+            {/* <div>
               <label className="text-xs">Filter</label>
               <select
                 className="grey-border px-2 py-1 text-slate-400 w-full"
@@ -118,22 +136,8 @@ const SnippetList = ({ data }) => {
                 <option value="all">All</option>
                 <option value="favorites">Favorited</option>
               </select>
-            </div>
+            </div> */}
           </div>
-          <input
-            type="text"
-            placeholder="Search"
-            className="grey-border px-2 py-1 mt-3 text-slate-400 w-full mb-2"
-            onChange={handleSearch}
-          />
-        </div>
-        <div className="flex justify-between items-center mb-3">
-          <h3 className="font-bold">Snippets</h3>
-          <Link to="/snippets/new">
-            <div className="bg-slate-800 w-5 h-5 rounded-full flex items-center justify-center">
-              <img src={plus} alt="Plus" className="h-3 w-3" />
-            </div>
-          </Link>
         </div>
         {!params.folderId ? (
           <p className="text-slate-400 text-xs text-center mt-8">
@@ -148,7 +152,7 @@ const SnippetList = ({ data }) => {
                   <Link
                     to={`/folders/${params.folderId}/snippets/${snippet?._id}`}
                   >
-                    <div className="grey-border p-3 mt-2 w-full">
+                    <div className="grey-border p-3 mb-2 w-full">
                       <div className="flex justify-between">
                         <h3 className="font-bold mb-4">{snippet?.title}</h3>
                       </div>
