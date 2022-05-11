@@ -6,9 +6,10 @@ import { useEffect, useState } from "react";
 import { formatDate } from "~/utils/helpers";
 import Favorite from "./favorite";
 
-const SnippetList = ({ data }) => {
+const SnippetList = ({ data, folders }) => {
   const [selectedSort, setSelectedSort] = useState("sortBy");
   const [selectedFilter, setSelectedFilter] = useState("all");
+  const [currentFolderName, setCurrentFolderName] = useState("Folder");
   const [snippets, setSnippets] = useState([]);
   const params = useParams();
   const location = useLocation();
@@ -31,6 +32,7 @@ const SnippetList = ({ data }) => {
 
   useEffect(() => {
     displaySnippetsByFolder();
+    setCurrentFolderName(getCurrentFolderName());
   }, [params.folderId, data]);
 
   const handleSearch = (e) => {
@@ -79,6 +81,17 @@ const SnippetList = ({ data }) => {
     setSnippets(filteredSnippets);
   };
 
+  const getCurrentFolderName = () => {
+    if (params.folderId === "all") {
+      return "All snippets";
+    } else {
+      const currentFolder = folders.filter(
+        (folder) => folder._id === params.folderId
+      );
+      return currentFolder[0].name;
+    }
+  };
+
   return (
     <>
       <div
@@ -96,7 +109,10 @@ const SnippetList = ({ data }) => {
         </Link> */}
 
         <div className="flex justify-between items-center mb-3 sm:mt-6 md:mt-5 lg:mt-0">
-          <h3 className="font-bold text-xl">All snippets</h3>
+          {/* <h3 className="font-bold text-xl">
+            {currentFolderName && currentFolderName}
+          </h3> */}
+          <h3 className="font-bold text-xl">{currentFolderName}</h3>
           <Link to="/snippets/new">
             <div>
               <img src={plus} alt="Plus" className="h-5 w-5" />
@@ -105,7 +121,7 @@ const SnippetList = ({ data }) => {
         </div>
 
         <div className="mt-6 mb-6">
-        <div className=" w-full">
+          <div className=" w-full">
             <label className="text-xs">Search</label>
             <input
               type="text"

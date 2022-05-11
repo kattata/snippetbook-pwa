@@ -11,7 +11,7 @@ const SideBar = ({ data, menuOpen, setMenuOpen }) => {
         setMenuOpen={setMenuOpen}
       />
       {/* <span className="h-full w-[1px] bg-slate-300 hidden lg:block"></span> */}
-      <SnippetList data={data.snippets} />
+      <SnippetList data={data.snippets} folders={data.folders} />
     </div>
   );
 };
