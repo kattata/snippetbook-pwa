@@ -136,8 +136,23 @@ export default function App() {
 
 export function ErrorBoundary({ error }) {
   return (
-    <h1 className="text-red-500 font-bold">
-      {error.name}: {error.message}
-    </h1>
+    <html lang="en">
+      <head>
+        <Meta />
+        <Links />
+      </head>
+      <body className="font-lato bg-slate-100 flex justify-between">
+        <div className="absolute bg-slate-100 h-screen w-screen text-center">
+          {navigator.onLine ? (
+            <p className="text-red-500 mt-6">{error.message}</p>
+          ) : (
+            <p className="text-red-500 mt-6">
+              You're offline. This action is unavailable until you're connected
+              again
+            </p>
+          )}
+        </div>
+      </body>
+    </html>
   );
 }

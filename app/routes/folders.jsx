@@ -18,10 +18,14 @@ export default function Folders() {
     </div>
   );
 }
+
 export function ErrorBoundary({ error }) {
+  console.log(error);
   return (
-    <h1 className="text-red-500 font-bold">
-      {error.name}: {error.message}
-    </h1>
+    <>
+      <p className="text-red-500">
+        You're offline. This action is unavailable until you're connected again
+      </p>
+    </>
   );
 }

@@ -1,17 +1,37 @@
 self.addEventListener("install", () => {
-  console.log("Serwice worker installed");
+  console.log("Service worker installed");
 });
 
 self.addEventListener("fetch", (event) => {
+  console.log(event.request);
   const requestTarget = event.request.url;
-  if (
+  if (event.request.method === "POST" || event.request.method === "PUT") {
+    event.respondWith(
+      fetch(event.request).catch((error) => {
+        return caches.match(event.request);
+      })
+    );
+  } else if (
+    event.request.method === "GET" &&
     event.request.destination === "" &&
-    (requestTarget.includes("_data=routes") || requestTarget.includes("_data=root"))
+    (requestTarget.includes("_data=routes") ||
+      requestTarget.includes("_data=root"))
   ) {
+    // if (
+    //   event.request.destination === "" &&
+    //   (requestTarget.includes("_data=routes") ||
+    //     requestTarget.includes("_data=root"))
+    // ) {
     // Open the cache
     event.respondWith(
       caches
-        .open(`${requestTarget.includes("_data=routes") === true ? "snippets-cached" : "folders-cached"}`)
+        .open(
+          `${
+            requestTarget.includes("_data=routes") === true
+              ? "snippets-cached"
+              : "folders-cached"
+          }`
+        )
         .then(async (cache) => {
           // Go to the network first
           return fetch(event.request.url)
@@ -26,7 +46,10 @@ self.addEventListener("fetch", (event) => {
             });
         })
     );
-  } else if (event.request.destination != "") {
+  } else if (
+    event.request.method === "GET" &&
+    event.request.destination != ""
+  ) {
     event.respondWith(
       caches.open(`${event.request.destination}-cached`).then(async (cache) => {
         return cache.match(event.request).then((cachedResponse) => {
