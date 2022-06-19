@@ -62,7 +62,6 @@ export const links = () => [
 export const meta = () => [
   {
     charset: "utf-8",
-    // title: "SnippetBook",
     viewport: "width=device-width,initial-scale=1",
   },
   {
@@ -99,10 +98,7 @@ export async function action({ request }) {
       });
       return redirect(`/`);
     } catch (error) {
-      return json(
-        { errors: error.errors, values: Object.fromEntries(form) },
-        { status: 400 }
-      );
+      return json({ errors: error.errors, values: Object.fromEntries(form) }, { status: 400 });
     }
   }
 
@@ -125,6 +121,8 @@ export default function App() {
     <html lang="en">
       <head>
         <Meta />
+        {/* has to be here because Remix Meta component does not work */}
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
         <title>SnippetBook</title>
         <Links />
       </head>
@@ -157,8 +155,7 @@ export function ErrorBoundary({ error }) {
             <p className="text-red-500 mt-6">{error.message}</p>
           ) : (
             <p className="text-red-500 mt-6">
-              You're offline. This action is unavailable until you're connected
-              again
+              You're offline. This action is unavailable until you're connected again
             </p>
           )}
         </div>
