@@ -19,6 +19,9 @@ import SideBar from "./components/sidebar";
 import NavBar from "./components/navbar";
 import { useState } from "react";
 
+import LoadingCover from "./components/loadingCover.jsx";
+import { useTransition } from "@remix-run/react";
+
 export const links = () => [
   {
     rel: "stylesheet",
@@ -116,6 +119,8 @@ export default function App() {
   const data = useLoaderData();
   const [menuOpen, setMenuOpen] = useState();
 
+  const transition = useTransition();
+
   return (
     <html lang="en">
       <head>
@@ -123,6 +128,8 @@ export default function App() {
         <Links />
       </head>
       <body className="font-lato bg-slate-100 flex justify-between">
+        <LoadingCover remixTransition={transition} />
+
         <NavBar data={data} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
         <SideBar data={data} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
         <Outlet />
