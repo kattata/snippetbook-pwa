@@ -19,6 +19,9 @@ import SideBar from "./components/sidebar";
 import NavBar from "./components/navbar";
 import { useState } from "react";
 
+import LoadingCover from "./components/loadingCover.jsx";
+import { useTransition } from "@remix-run/react";
+
 export const links = () => [
   {
     rel: "stylesheet",
@@ -59,7 +62,7 @@ export const links = () => [
 export const meta = () => [
   {
     charset: "utf-8",
-    title: "SnippetBook",
+    // title: "SnippetBook",
     viewport: "width=device-width,initial-scale=1",
   },
   {
@@ -116,13 +119,18 @@ export default function App() {
   const data = useLoaderData();
   const [menuOpen, setMenuOpen] = useState();
 
+  const transition = useTransition();
+
   return (
     <html lang="en">
       <head>
         <Meta />
+        <title>SnippetBook</title>
         <Links />
       </head>
       <body className="font-lato bg-slate-100 flex justify-between">
+        <LoadingCover remixTransition={transition} />
+
         <NavBar data={data} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
         <SideBar data={data} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
         <Outlet />
