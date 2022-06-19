@@ -3,7 +3,6 @@ self.addEventListener("install", () => {
 });
 
 self.addEventListener("fetch", (event) => {
-  console.log(event.request);
   const requestTarget = event.request.url;
   if (event.request.method === "POST" || event.request.method === "PUT") {
     event.respondWith(
