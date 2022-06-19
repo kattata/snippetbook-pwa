@@ -20,7 +20,7 @@ import NavBar from "./components/navbar";
 import { useState } from "react";
 
 import LoadingCover from "./components/loadingCover.jsx";
-import { useTransition } from "@remix-run/react";
+import { useLocation, useTransition } from "@remix-run/react";
 
 export const links = () => [
   {
@@ -151,8 +151,8 @@ export function ErrorBoundary({ error }) {
         <Links />
       </head>
       <body className="font-lato bg-slate-100 flex justify-between">
-        <div>
-          {/* <div className="absolute bg-slate-100 h-screen w-screen text-center"> */}
+        {/* <div> */}
+        <div className="absolute bg-slate-100 h-screen w-screen text-center">
           {navigator.onLine ? (
             <p className="text-red-500 mt-6">{error.message}</p>
           ) : (

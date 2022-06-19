@@ -1,4 +1,4 @@
-import { Form, json, redirect, useLoaderData } from "remix";
+import { Form, json, redirect, useCatch, useLoaderData } from "remix";
 import Input from "~/components/input";
 import SnippetForm from "~/components/snippetForm";
 import connectDb from "~/db/connectDb.server";
@@ -61,5 +61,20 @@ export function ErrorBoundary({ error }) {
         You're offline. This action is unavailable until you're connected again
       </p>
     </>
+  );
+}
+
+export function CatchBoundary() {
+  const caught = useCatch();
+  return (
+    <div>
+      <p className="text-red-500">
+        You're offline. This action is unavailable until you're connected again
+      </p>
+      <p>
+        {caught.status} {caught.statusText}
+      </p>
+      <p>{caught.data}</p>
+    </div>
   );
 }
