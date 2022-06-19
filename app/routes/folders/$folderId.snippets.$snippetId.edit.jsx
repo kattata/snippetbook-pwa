@@ -52,3 +52,14 @@ export default function EditSnippet() {
     </>
   );
 }
+
+export function ErrorBoundary({ error }) {
+  console.log(error);
+  return (
+    <>
+      <p className="text-red-500">
+        You're offline. This action is unavailable until you're connected again
+      </p>
+    </>
+  );
+}

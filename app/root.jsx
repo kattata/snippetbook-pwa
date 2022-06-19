@@ -135,6 +135,7 @@ export default function App() {
 }
 
 export function ErrorBoundary({ error }) {
+  console.log(error);
   return (
     <html lang="en">
       <head>
@@ -142,7 +143,8 @@ export function ErrorBoundary({ error }) {
         <Links />
       </head>
       <body className="font-lato bg-slate-100 flex justify-between">
-        <div className="absolute bg-slate-100 h-screen w-screen text-center">
+        <div>
+          {/* <div className="absolute bg-slate-100 h-screen w-screen text-center"> */}
           {navigator.onLine ? (
             <p className="text-red-500 mt-6">{error.message}</p>
           ) : (
