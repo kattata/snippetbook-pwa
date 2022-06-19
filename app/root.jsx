@@ -62,7 +62,7 @@ export const links = () => [
 export const meta = () => [
   {
     charset: "utf-8",
-    title: "SnippetBook",
+    // title: "SnippetBook",
     viewport: "width=device-width,initial-scale=1",
   },
   {
@@ -125,6 +125,7 @@ export default function App() {
     <html lang="en">
       <head>
         <Meta />
+        <title>SnippetBook</title>
         <Links />
       </head>
       <body className="font-lato bg-slate-100 flex justify-between">
